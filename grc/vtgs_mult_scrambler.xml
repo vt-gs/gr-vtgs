@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<block>
+  <name>Multiplicative Scrambler</name>
+  <key>vtgs_mult_scrambler</key>
+  <category>VT Ground Station</category>
+  <import>import vtgs</import>
+  <make>vtgs.mult_scrambler($n, $start)</make>
+
+  <param>
+    <name>Maximal bit size</name>
+    <key>n</key>
+    <value>17</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Start state</name>
+    <key>start</key>
+    <value>0x3FFFF</value>
+    <type>hex</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>byte</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

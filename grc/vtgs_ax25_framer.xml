@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<block>
+  <name>AX.25 Framer</name>
+  <key>vtgs_ax25_framer</key>
+  <category>VT Ground Station</category>
+  <import>import vtgs</import>
+  <make>vtgs.ax25_framer($padding)</make>
+
+  <param>
+    <name>Padding</name>
+    <key>padding</key>
+    <value>32</value>
+    <type>int</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>

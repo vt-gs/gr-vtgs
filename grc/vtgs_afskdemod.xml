@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<block>
+  <name>AFSK Demod</name>
+  <key>vtgs_afskdemod</key>
+  <category>VT Ground Station</category>
+  <import>import vtgs</import>
+  <make>vtgs.afskdemod($samp_sym, $baud, $mark_f, $space_f)</make>
+
+  <param>
+    <name>Samples per symbol</name>
+    <key>samp_sym</key>
+    <value>32</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Baud</name>
+    <key>baud</key>
+    <value>1200</value>
+    <type>int</type>
+  </param>
+
+  <param>
+    <name>Mark frequency</name>
+    <key>mark_f</key>
+    <value>1200</value>
+    <type>float</type>
+  </param>
+
+  <param>
+    <name>Space frequency</name>
+    <key>space_f</key>
+    <value>2200</value>
+    <type>float</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>complex</type>
+  </sink>
+
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
