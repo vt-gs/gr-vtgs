@@ -29,5 +29,5 @@ install(FILES
     afskdemod.h
     mult_scrambler.h
     mult_descrambler.h
-    fsk96demod.h DESTINATION include/vtgs
+    DESTINATION include/vtgs
 )
