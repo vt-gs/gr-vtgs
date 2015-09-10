@@ -32,7 +32,8 @@ list(APPEND vtgs_sources
     ao40_decoder_impl.cc
     afskdemod_impl.cc
     mult_scrambler_impl.cc
-    mult_descrambler_impl.cc)
+    mult_descrambler_impl.cc
+    fsk96demod_impl.cc)
 
 set(vtgs_sources "${vtgs_sources}" PARENT_SCOPE)
 if(NOT vtgs_sources)

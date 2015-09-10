@@ -71,15 +71,13 @@ namespace gr {
         const gr_complex *in = (const gr_complex *) input_items[0];
         unsigned char *out = (unsigned char *) output_items[0];
 
-        int ninput = ninput_items[0];
-
-        pk_bfskdemod_process(demod, in, ninput);
+        pk_bfskdemod_process(demod, in, noutput_items);
 
         size_t nitems = 0;
         unsigned char *data = pk_bfskdemod_read(demod, &nitems);
         memcpy(out, data, nitems * sizeof(unsigned char));
 
-        consume_each (ninput);
+        consume_each (noutput_items);
         return nitems;
     }
 

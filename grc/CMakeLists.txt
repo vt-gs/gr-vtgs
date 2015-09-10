@@ -25,5 +25,5 @@ install(FILES
     vtgs_mult_scrambler.xml
     vtgs_mult_descrambler.xml
   # vtgs_fsk96demod.xml
-    DESTINATION share/gnuradio/grc/blocks
+    vtgs_fsk96demod.xml DESTINATION share/gnuradio/grc/blocks
 )

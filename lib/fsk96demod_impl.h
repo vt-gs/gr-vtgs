@@ -30,18 +30,19 @@ namespace gr {
     class fsk96demod_impl : public fsk96demod
     {
      private:
+      unsigned int _samp_sym;
       pk_fsk96demod *demod;
 
      public:
-      fsk96demod_impl();
+      fsk96demod_impl(unsigned int samp_sym);
       ~fsk96demod_impl();
 
       void forecast (int noutput_items, gr_vector_int &ninput_items_required);
 
       int general_work(int noutput_items,
-		       gr_vector_int &ninput_items,
-		       gr_vector_const_void_star &input_items,
-		       gr_vector_void_star &output_items);
+           gr_vector_int &ninput_items,
+           gr_vector_const_void_star &input_items,
+           gr_vector_void_star &output_items);
     };
 
   } // namespace vtgs

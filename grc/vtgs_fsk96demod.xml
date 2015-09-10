@@ -1,10 +1,17 @@
 <?xml version="1.0"?>
 <block>
-  <name>FSK96 Demod</name>
+  <name>FSK9600 Demod</name>
   <key>vtgs_fsk96demod</key>
-  <category>VT Ground Station</category>
+  <category>vtgs</category>
   <import>import vtgs</import>
-  <make>vtgs.fsk96demod()</make>
+  <make>vtgs.fsk96demod($samp_sym)</make>
+
+  <param>
+    <name>Samples per symbol</name>
+    <key>samp_sym</key>
+    <value>5</value>
+    <type>int</type>
+  </param>
 
   <sink>
     <name>in</name>

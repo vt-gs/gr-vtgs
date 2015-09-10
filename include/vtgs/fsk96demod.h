@@ -46,7 +46,7 @@ namespace gr {
        * class. vtgs::fsk96demod::make is the public interface for
        * creating new instances.
        */
-      static sptr make();
+      static sptr make(unsigned int samp_sym);
     };
 
   } // namespace vtgs
