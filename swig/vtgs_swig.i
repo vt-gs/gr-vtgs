@@ -16,6 +16,7 @@
 #include "vtgs/fsk96demod.h"
 #include "vtgs/mult_scrambler.h"
 #include "vtgs/mult_descrambler.h"
+#include "vtgs/fsk96mod.h"
 %}
 
 
@@ -36,3 +37,5 @@ GR_SWIG_BLOCK_MAGIC2(vtgs, mult_scrambler);
 %include "vtgs/mult_descrambler.h"
 GR_SWIG_BLOCK_MAGIC2(vtgs, mult_descrambler);
 
+%include "vtgs/fsk96mod.h"
+GR_SWIG_BLOCK_MAGIC2(vtgs, fsk96mod);

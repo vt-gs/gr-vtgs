@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-  <name>FSK9600 Demod</name>
-  <key>vtgs_fsk96demod</key>
+  <name>FSK9600 Mod</name>
+  <key>vtgs_fsk96mod</key>
   <category>VT Ground Station</category>
   <import>import vtgs</import>
-  <make>vtgs.fsk96demod($samp_sym)</make>
+  <make>vtgs.fsk96mod($samp_sym)</make>
 
   <param>
     <name>Samples per symbol</name>
@@ -15,11 +15,11 @@
 
   <sink>
     <name>in</name>
-    <type>float</type>
+    <type>byte</type>
   </sink>
 
   <source>
     <name>out</name>
-    <type>byte</type>
+    <type>float</type>
   </source>
 </block>
