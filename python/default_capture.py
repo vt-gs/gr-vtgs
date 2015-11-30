@@ -2,11 +2,12 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Default Capture
-# Generated: Mon Nov 30 12:17:37 2015
+# Generated: Mon Nov 30 14:10:29 2015
 ##################################################
 
 from gnuradio import blocks
 from gnuradio import eng_notation
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio import uhd
 from gnuradio.eng_option import eng_option
@@ -23,10 +24,10 @@ class default_capture(gr.top_block):
         # Variables
         ##################################################
         self.uplink_offset = uplink_offset = 0
-        self.uplink_freq = uplink_freq = 400e6
+        self.uplink_freq = uplink_freq = 145.95e6
         self.samp_rate = samp_rate = 250e3
         self.downlink_offset = downlink_offset = 0
-        self.downlink_freq = downlink_freq = 400e6
+        self.downlink_freq = downlink_freq = 435.85e6
 
         ##################################################
         # Blocks
@@ -39,15 +40,17 @@ class default_capture(gr.top_block):
         	),
         )
         self.uhd_usrp_source_0.set_samp_rate(samp_rate)
-        self.uhd_usrp_source_0.set_center_freq(downlink_freq + downlink_offset, 0)
+        self.uhd_usrp_source_0.set_center_freq(downlink_freq, 0)
         self.uhd_usrp_source_0.set_gain(0, 0)
+        self.freq_xlating_fir_filter_xxx_0 = filter.freq_xlating_fir_filter_ccc(1, (), downlink_offset, samp_rate)
         self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_gr_complex*1, "/tmp/test.dat", False)
         self.blocks_file_sink_0.set_unbuffered(False)
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.uhd_usrp_source_0, 0), (self.blocks_file_sink_0, 0))    
+        self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.blocks_file_sink_0, 0))    
+        self.connect((self.uhd_usrp_source_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))    
 
 
     def get_uplink_offset(self):
@@ -74,14 +77,14 @@ class default_capture(gr.top_block):
 
     def set_downlink_offset(self, downlink_offset):
         self.downlink_offset = downlink_offset
-        self.uhd_usrp_source_0.set_center_freq(self.downlink_freq + self.downlink_offset, 0)
+        self.freq_xlating_fir_filter_xxx_0.set_center_freq(self.downlink_offset)
 
     def get_downlink_freq(self):
         return self.downlink_freq
 
     def set_downlink_freq(self, downlink_freq):
         self.downlink_freq = downlink_freq
-        self.uhd_usrp_source_0.set_center_freq(self.downlink_freq + self.downlink_offset, 0)
+        self.uhd_usrp_source_0.set_center_freq(self.downlink_freq, 0)
 
 
 if __name__ == '__main__':
