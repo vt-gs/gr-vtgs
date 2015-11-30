@@ -1,15 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<?grc format='1' created='3.7.8'?>
+<?grc format='1' created='3.7.9'?>
 <flow_graph>
   <timestamp>Wed Mar  4 14:40:36 2015</timestamp>
   <block>
     <key>options</key>
     <param>
       <key>author</key>
-      <value></value>
-    </param>
-    <param>
-      <key>alias</key>
       <value></value>
     </param>
     <param>
@@ -53,8 +49,16 @@
       <value>0</value>
     </param>
     <param>
+      <key>qt_qss_theme</key>
+      <value></value>
+    </param>
+    <param>
       <key>realtime_scheduling</key>
       <value></value>
+    </param>
+    <param>
+      <key>run_command</key>
+      <value>{python} -u {filename}</value>
     </param>
     <param>
       <key>run_options</key>
@@ -522,7 +526,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/pavid/Downloads/funcube_3_test.dat</value>
+      <value>/home/pavid/Downloads/captures/funcube_3_test.dat</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -577,7 +581,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(648, 657)</value>
+      <value>(496, 505)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -683,7 +687,7 @@
     </param>
     <param>
       <key>samples_per_second</key>
-      <value>samp_rate * 4</value>
+      <value>samp_rate * 5</value>
     </param>
     <param>
       <key>type</key>
@@ -1068,7 +1072,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>""</value>
+      <value>Power Spectral Density</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -1311,7 +1315,7 @@
     </param>
     <param>
       <key>name</key>
-      <value>QT GUI Plot</value>
+      <value>Waterfall Plot</value>
     </param>
     <param>
       <key>nconnections</key>
@@ -1417,7 +1421,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(896, 689)</value>
+      <value>(744, 537)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1489,5 +1493,11 @@
     <sink_block_id>blocks_message_debug_0</sink_block_id>
     <source_key>valid_frames</source_key>
     <sink_key>print</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>vtgs_ao40_decoder_0</source_block_id>
+    <sink_block_id>blocks_message_debug_0</sink_block_id>
+    <source_key>valid_frames</source_key>
+    <sink_key>print_pdu</sink_key>
   </connection>
 </flow_graph>

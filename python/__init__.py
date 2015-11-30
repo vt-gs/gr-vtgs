@@ -18,11 +18,6 @@
 
 # The presence of this file turns this directory into a Python package
 
-'''
-This is the GNU Radio VTGS module. Place your Python package
-description here (python/__init__.py).
-'''
-
 # import swig generated symbols into the vtgs namespace
 try:
 	# this might fail if the module is python-only
@@ -30,10 +25,4 @@ try:
 except ImportError:
 	pass
 
-from afsk1200_ax25_tx import *
-from gmsk9600_ax25_tx import *
-from  fsk9600_ax25_tx import *
-
-from afsk1200_ax25_rx import *
-from gmsk9600_ax25_rx import *
-from  fsk9600_ax25_rx import *
+from default_capture import *

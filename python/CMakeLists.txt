@@ -31,13 +31,7 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    afsk1200_ax25_tx.py
-    gmsk9600_ax25_tx.py
-     fsk9600_ax25_tx.py
-
-    afsk1200_ax25_rx.py
-    gmsk9600_ax25_rx.py
-     fsk9600_ax25_rx.py
+    default_capture.py
     DESTINATION ${GR_PYTHON_DIR}/vtgs
 )
 
