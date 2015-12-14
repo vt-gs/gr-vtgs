@@ -26,3 +26,4 @@ except ImportError:
 	pass
 
 from default_capture import *
+from default_test import *
