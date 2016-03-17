@@ -17,6 +17,7 @@
 #include "vtgs/mult_scrambler.h"
 #include "vtgs/mult_descrambler.h"
 #include "vtgs/fsk96mod.h"
+#include "vtgs/ao40_encoder.h"
 %}
 
 
@@ -39,3 +40,5 @@ GR_SWIG_BLOCK_MAGIC2(vtgs, mult_descrambler);
 
 %include "vtgs/fsk96mod.h"
 GR_SWIG_BLOCK_MAGIC2(vtgs, fsk96mod);
+%include "vtgs/ao40_encoder.h"
+GR_SWIG_BLOCK_MAGIC2(vtgs, ao40_encoder);

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<block>
+  <name>AO-40 Encoder</name>
+  <key>vtgs_ao40_encoder</key>
+  <category>VT Ground Station</category>
+  <import>import vtgs</import>
+  <make>vtgs.ao40_encoder()</make>
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+  <source>
+    <name>out</name>
+    <type>byte</type>
+  </source>
+</block>
