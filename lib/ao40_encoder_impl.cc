@@ -133,7 +133,7 @@ namespace gr {
         //          << noutput_items << "]" << std::endl;
 
         // Make sure there is enough buffer space
-        if (noutput_items < encoded_msg.size() + 64){
+        if (noutput_items < encoded_msg.size() + 32){
           //std::cout << "ao40_encoder::work -- buffer is too small!" << std::endl;
           return 0;
         }
@@ -156,7 +156,7 @@ namespace gr {
         // This is the easy way
         memcpy(out, marker_buf, 32);
         memcpy(out + 32, encoded_msg.data(), encoded_msg.size());
-        memcpy(out + 5232, marker_buf, 32);
+        //memcpy(out + 5232, marker_buf, 32);
 
         /*uint64_t* flag2 = (uint64_t*)(out + 5232);
         flag2[0] = 0x0001000101000000;
@@ -174,7 +174,7 @@ namespace gr {
         messages_transmitted++;
         //std::cout << "ao40_encoder::work -- transmitted [" << messages_transmitted << "]"
         //          << std::endl;
-        return encoded_msg.size() + 64;
+        return encoded_msg.size() + 32;
       }
 
       // Tell the runtime how many items were produced.
