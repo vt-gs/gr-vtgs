@@ -34,16 +34,21 @@ namespace gr {
      private:
       // Debug variables
       bool debug;
-      int messages;
+      int messages_received;
+      int messages_transmitted;
+      bool continuous;
+      uint32_t flag;
 
       ao40_fec_encoder *encoder;
+
+      uint8_t marker_buf[32];
 
       /***** Message handling *****/
       void handler (const pmt::pmt_t msg);
       std::queue<std::vector<uint8_t> > queue;
 
      public:
-      ao40_encoder_impl();
+      ao40_encoder_impl(bool continuous, uint32_t flag);
       ~ao40_encoder_impl();
 
       // void forecast (int noutput_items, gr_vector_int &ninput_items_required);

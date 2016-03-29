@@ -4,7 +4,29 @@
   <key>vtgs_ao40_encoder</key>
   <category>VT Ground Station</category>
   <import>import vtgs</import>
-  <make>vtgs.ao40_encoder()</make>
+  <make>vtgs.ao40_encoder($continuous, $flag)</make>
+
+  <param>
+    <name>Continuous</name>
+    <key>continuous</key>
+    <value>False</value>
+    <type>enum</type>
+    <option>
+      <name>Yes</name>
+      <key>True</key>
+    </option>
+    <option>
+      <name>No</name>
+      <key>False</key>
+    </option>
+  </param>
+
+  <param>
+    <name>Flag</name>
+    <key>flag</key>
+    <value>449838109</value>
+  </param>
+
   <sink>
     <name>in</name>
     <type>message</type>
@@ -13,4 +35,6 @@
     <name>out</name>
     <type>byte</type>
   </source>
+
+
 </block>
