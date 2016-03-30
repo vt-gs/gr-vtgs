@@ -179,8 +179,8 @@ namespace gr {
 
       // Tell the runtime how many items were produced.
       if (continuous) {
-        memset(out, 0, 1000);
-        return 1000;
+        memset(out, 0, noutput_items);
+        return noutput_items;
       } else {
         return 0;
       }
