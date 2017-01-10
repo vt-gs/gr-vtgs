@@ -95,11 +95,12 @@ namespace gr {
       );
 
       int decode_rs_8(char *data, int *eras_pos, int no_eras); 
-      bool get_status() const;
+
 
      public:
       ao40_fec_decoder();
       ~ao40_fec_decoder();
+      bool get_status() const;
 
       int ao40_decode(
         unsigned char *output,

@@ -23,6 +23,7 @@
 #endif
 
 #include <iostream>
+#include <iomanip>
 
 #include <gnuradio/io_signature.h>
 
@@ -63,6 +64,9 @@ namespace gr {
 
         d_offset = 0;
 
+	frames_detected = 0;
+	frames_decoded = 0;
+
         coded  = new unsigned char[AO40_CODED_SIZE];
         packed = new unsigned char[AO40_FRAME_BYTE];
 
@@ -70,7 +74,7 @@ namespace gr {
         message_port_register_out(pmt::mp("invalid_frames"));
     }
 
-    void ao40_decoder_impl::output_pdu(int errors)
+    void ao40_decoder_impl::output_pdu(bool status)
     {
         pmt::pmt_t frame_vector;
         pmt::pmt_t frame_id = pmt::PMT_NIL;
@@ -84,8 +88,8 @@ namespace gr {
 
         frame_pair = pmt::cons(frame_id, frame_vector);
 
-        bool valid = errors < 1040;
-        if (valid)
+        //bool valid = errors < 1040;
+        if (status)
             message_port_pub(pmt::mp("valid_frames"), frame_pair);
         else
             message_port_pub(pmt::mp("invalid_frames"), frame_pair);
@@ -122,11 +126,12 @@ namespace gr {
                 marker_buf |= (in[i] & 1);
 
                 if (marker_buf == AO40_MARKER) {
+		    frames_detected++;
                     if (debug) {
                         std::cout << "***** ao40_decoder debug *****" << std::endl;
-                        std::cout << "     Detected a marker!" << std::endl;
+                        std::cout << "     Detected a marker! (" << frames_detected << ")" << std::endl;
                     }
-
+		    
                     state = DECODE;
                     d_offset = 0;
 
@@ -141,17 +146,30 @@ namespace gr {
                     coded[d_offset++] = (in[i] & 1) == 1 ? 0x00 : 0xFF;
                 } else {
                     state = DETECT;
-
+		    //std::memset(packed, 0, AO40_FRAME_BYTE);
                     int errors = decoder->ao40_decode(packed, coded, 1);
-                    if (debug) {
-                        std::cout << "***** ao40_decoder debug *****" << std::endl;
-                        std::cout << "     Errors corrected:    ";
-                        std::cout << float(errors) * 100.0f / float(AO40_CODED_SIZE);
-                        std::cout << "%" << std::endl;
-                    }
-
-                    output_pdu(errors);
-
+		    if (decoder->get_status()) {
+			frames_decoded++;
+                        if (debug) {
+                            std::cout << "***** ao40_decoder debug *****" << std::endl;
+                            std::cout << "     Decoding frame " << frames_detected << std::endl;
+                            std::cout << "     Errors corrected:    ";
+                            std::cout << float(errors) * 100.0f / float(AO40_CODED_SIZE);
+                            std::cout << "%" << std::endl;
+			
+	    		    //std::string str(packed);
+		    	    //std::cout << "***** payload *****" << std::endl;
+			    //std::cout << std::hex << str << std::endl;
+                        }
+                        output_pdu(true);
+		    } else {
+                        output_pdu(false);
+ 			if (debug) {
+			    std::cout << "***** ao40_decoder debug *****" << std::endl;
+                            std::cout << "     Decode failed for frame (" << frames_detected << ")" << std::endl;
+			}
+		    }
+		    
                     consume_each(i+1);
                     return 0;
                 }

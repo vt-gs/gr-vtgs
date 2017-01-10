@@ -41,13 +41,16 @@ namespace gr {
 
       decoder_state state;
 
+      int frames_detected;
+      int frames_decoded;
+
       uint32_t marker_buf;
       size_t d_offset;
 
       unsigned char *coded;
       unsigned char *packed;
 
-      void output_pdu(int errors);
+      void output_pdu(bool status);
 
      public:
       ao40_decoder_impl();

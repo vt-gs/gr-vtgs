@@ -533,6 +533,15 @@ namespace gr {
                 }
                 status = true;
             } else {
+		// Try to still pull the data out.
+		// Even though the frame decode failed, there is a chance things can be recovered?
+                int j = 0; 
+
+                for (col = RSPAD; col < KK; col++) {
+                    for (row = 0; row < RSBLOCKS; row++) {
+                        output[i * BLOCKSIZE + j++] = rsblocks[row][col]; 
+                    }
+                }
                 status = false;
             }
 
